@@ -44,7 +44,19 @@ Requiere Go instalado y acceso corporativo a las dependencias privadas (`lib/go-
 cd mortgage-api-bfcl-mortgage-loans-catalogs
 ```
 
-### 2. Compilar el proyecto
+### 2. Descargar las dependencias
+Antes de compilar, debes descargar las dependencias del proyecto. Dado que consumes librerías privadas de tu empresa (`github.com/falabella-regulado/*`), asegúrate de indicarle a Go que no utilice el proxy público para ellas:
+```bash
+# Configurar Go para que tenga acceso a repositorios privados
+export GOPRIVATE="github.com/falabella-regulado/*"
+# En Windows (PowerShell): $env:GOPRIVATE="github.com/falabella-regulado/*"
+
+# Descargar módulos
+go mod download
+go mod tidy
+```
+
+### 3. Compilar el proyecto
 El proyecto cuenta con un archivo `Makefile` para facilitar las tareas. Para generar el binario de ejecución:
 ```bash
 make build
