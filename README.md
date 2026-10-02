@@ -68,8 +68,9 @@ go tool cover -html=coverfile_out
 ```
 
 ### 5. Inyección de Variables de Entorno (Arranque)
-Para conectarse al backend real (Finnflow) garantizando la paridad con el legado Java, inyecta las siguientes variables al correr el proyecto:
+Para conectarse al backend real (Finnflow) garantizando la paridad con el legado Java, inyecta las siguientes variables al correr el proyecto. Elige los comandos según tu sistema operativo:
 
+**🍎 Mac / Linux (Bash / Zsh):**
 ```bash
 # Variables Obligatorias del Legado
 export FINNFLOW_URL="https://api-proveedor.com"
@@ -78,6 +79,20 @@ export FINNFLOW_SECRET="tu_client_secret"
 
 # Selector de tráfico (Nuevo en Go)
 export DEFAULT_BACKEND="real"
+
+# Levantar el servicio
+go run ./cmd/api
+```
+
+**🪟 Windows (PowerShell):**
+```powershell
+# Variables Obligatorias del Legado
+$env:FINNFLOW_URL="https://api-proveedor.com"
+$env:FINNFLOW_KEY="tu_client_id"
+$env:FINNFLOW_SECRET="tu_client_secret"
+
+# Selector de tráfico (Nuevo en Go)
+$env:DEFAULT_BACKEND="real"
 
 # Levantar el servicio
 go run ./cmd/api
