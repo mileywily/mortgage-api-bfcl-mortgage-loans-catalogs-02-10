@@ -10,11 +10,12 @@ build:
 
 test:
 	@echo "Ejecutando tests..."
-	@go test $(PACKAGES)
+	@go test -coverpkg=./internal/... $(PACKAGES)
 
 coverage:
 	@echo "Coverfile..."
-	go test -coverprofile=coverfile_out $(PACKAGES)
+	go test -coverpkg=./internal/... -coverprofile=coverfile_raw.out $(PACKAGES)
+	@grep -v -E "/cmd/|dummy_repository.go|/mocks/" coverfile_raw.out > coverfile_out
 	@go tool cover -func coverfile_out
 	@go tool cover -func coverfile_out | grep total | grep -o '[0-9]*\.[0-9]*' | cut -d' ' -f1 > coverage.txt
 
