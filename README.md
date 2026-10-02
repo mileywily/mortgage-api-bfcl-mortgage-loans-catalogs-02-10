@@ -98,6 +98,9 @@ $env:DEFAULT_BACKEND="real"
 go run ./cmd/api
 ```
 
+**☁️ Nullplatform (Entorno Productivo/CI-CD):**
+Cuando despliegues tu servicio en Nullplatform, **no es necesario** ejecutar comandos en consola. Simplemente debes configurar las variables `FINNFLOW_URL`, `FINNFLOW_KEY`, `FINNFLOW_SECRET` y `DEFAULT_BACKEND` como *Parameters* (o *Secrets* en el caso de la contraseña) dentro de la UI de Nullplatform para tu aplicación. Adicionalmente, ten la tranquilidad de que Nullplatform inyectará automáticamente la variable `PORT`, la cual tu servicio Go ya está configurado para leer dinámicamente y ejecutar el servidor bajo ese puerto (con soporte para *Graceful Shutdown* incorporado en `main.go`).
+
 ### 6. ¿Cómo consumir el servicio?
 Dado que este microservicio imita el contrato legacy de Java, el cliente (Frontend/Consumer) no requiere enviar un JSON Body, solo el Path Variable con el nombre del catálogo.
 
