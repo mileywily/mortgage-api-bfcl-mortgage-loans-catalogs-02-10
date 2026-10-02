@@ -14,7 +14,7 @@ import (
 func TestDummyRepository_GetCatalog(t *testing.T) {
 	repo := repository.NewDummyRepository()
 	
-	// Test Destino (Genérico)
+	// Test Destino
 	res, err := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Destino"})
 	require.NoError(t, err)
 	assert.NotNil(t, res)
@@ -34,12 +34,12 @@ func TestDummyRepository_GetCatalog(t *testing.T) {
 	require.NoError(t, errCom)
 	assert.NotNil(t, resCom)
 
-	// Test Vacio / Error
+	// Test Vacio Error
 	resVac, errVac := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Vacio"})
 	require.NoError(t, errVac)
 	assert.NotNil(t, resVac)
 
-	// Test Fallback (Cualquier otro nombre devuelve el genérico en Dummy)
+	// Test Fallback Not Found
 	resErr, errErr := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Inexistente"})
 	require.NoError(t, errErr)
 	assert.NotNil(t, resErr)
