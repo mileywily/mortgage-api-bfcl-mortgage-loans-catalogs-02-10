@@ -57,7 +57,8 @@ func (r *restRepository) GetCatalog(ctx context.Context, req domain.GetCatalogRe
 
 	resp, err := r.httpClient.Do(httpReq)
 	if err != nil {
-		if strings.Contains(err.Error(), "timeout") || strings.Contains(err.Error(), "connection") || strings.Contains(err.Error(), "refused") {
+		lowerErr := strings.ToLower(err.Error())
+		if strings.Contains(lowerErr, "timeout") || strings.Contains(lowerErr, "connection") || strings.Contains(lowerErr, "refused") || strings.Contains(lowerErr, "deadline") {
 			return []domain.NoResultsCatalogItem{{CodRespuesta: 3, Mensaje: "Sin resultados.", Excepcion: "Ninguna"}}, nil
 		}
 		return nil, err
