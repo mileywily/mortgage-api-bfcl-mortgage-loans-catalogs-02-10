@@ -14,7 +14,7 @@ import (
 func TestDummyRepository_GetCatalog(t *testing.T) {
 	repo := repository.NewDummyRepository()
 	
-	// Test Destino
+	// Test Destino (Genérico)
 	res, err := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Destino"})
 	require.NoError(t, err)
 	assert.NotNil(t, res)
@@ -23,9 +23,24 @@ func TestDummyRepository_GetCatalog(t *testing.T) {
 	resSeg, errSeg := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "SegurosIncendio"})
 	require.NoError(t, errSeg)
 	assert.NotNil(t, resSeg)
+	
+	// Test TiposDocumentos
+	resDoc, errDoc := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "TiposDocumentos"})
+	require.NoError(t, errDoc)
+	assert.NotNil(t, resDoc)
+	
+	// Test Comunas
+	resCom, errCom := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Comunas"})
+	require.NoError(t, errCom)
+	assert.NotNil(t, resCom)
 
-	// Test Not Found (Inexistente)
+	// Test Vacio / Error
+	resVac, errVac := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Vacio"})
+	require.NoError(t, errVac)
+	assert.NotNil(t, resVac)
+
+	// Test Fallback (Cualquier otro nombre devuelve el genérico en Dummy)
 	resErr, errErr := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Inexistente"})
-	require.ErrorIs(t, errErr, domain.ErrCatalogNotFound)
-	assert.Nil(t, resErr)
+	require.NoError(t, errErr)
+	assert.NotNil(t, resErr)
 }
