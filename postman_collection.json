@@ -1,0 +1,105 @@
+{
+  "info": {
+    "name": "Mortgage Loan Catalogs (Go & Java Parity)",
+    "description": "Suite de Colección Postman para verificar la paridad absoluta de los casos de uso entre el sistema Legacy (Java) y el nuevo (Go).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Catálogo Genérico (Destino)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-Channel", "value": "APP" },
+          { "key": "X-Commerce", "value": "FALABELLA" }
+        ],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Destino",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "Destino" ]
+        }
+      }
+    },
+    {
+      "name": "2. Catálogo Seguros (SegurosIncendio)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/SegurosIncendio",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "SegurosIncendio" ]
+        }
+      }
+    },
+    {
+      "name": "3. Catálogo Comunas",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Comunas",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "Comunas" ]
+        }
+      }
+    },
+    {
+      "name": "4. Catálogo TiposDocumentos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/TiposDocumentos",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "TiposDocumentos" ]
+        }
+      }
+    },
+    {
+      "name": "5. Error: Catálogo Inexistente (HTTP 402)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Inexistente",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "Inexistente" ]
+        }
+      }
+    },
+    {
+      "name": "6. Error: Token Inválido (HTTP 401)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer invalido" }
+        ],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Destino",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "Destino" ]
+        }
+      }
+    },
+    {
+      "name": "7. Sin Resultados (CodRespuesta 3)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Vacio",
+          "host": [ "{{BASE_URL}}" ],
+          "path": [ "v1", "bfcl", "mortgage-loan", "catalogs", "Vacio" ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ]
+}

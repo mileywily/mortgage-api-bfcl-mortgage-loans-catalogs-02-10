@@ -1,4 +1,0 @@
-$kind: http-request
-url: "{{BASE_URL}}/v1/bfcl/mortgage-loan/catalogs/Comunas"
-method: POST
-order: 6000
