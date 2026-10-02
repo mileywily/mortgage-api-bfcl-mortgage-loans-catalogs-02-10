@@ -1,4 +1,4 @@
-package catalog_repository_test
+package repository
 
 import (
 	"context"
@@ -8,11 +8,10 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"mortgage-api-bfcl-mortgage-loans-catalogs/internal/core/domain"
-	repository "mortgage-api-bfcl-mortgage-loans-catalogs/internal/infra/rest/catalog_repository"
 )
 
 func TestDummyRepository_GetCatalog(t *testing.T) {
-	repo := repository.NewDummyRepository()
+	repo := NewDummyRepository()
 	
 	// Test Destino
 	res, err := repo.GetCatalog(context.Background(), domain.GetCatalogRequest{CatalogName: "Destino"})
