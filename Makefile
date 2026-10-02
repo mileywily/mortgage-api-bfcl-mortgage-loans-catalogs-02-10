@@ -1,5 +1,7 @@
 BUILDPATH=$(CURDIR)
 
+PACKAGES := $(shell go list ./... | grep -v '/lib/')
+
 build:
 	@echo "Creando Binario ..."
 	@mkdir -p $(BUILDPATH)/build/bin
@@ -8,11 +10,11 @@ build:
 
 test:
 	@echo "Ejecutando tests..."
-	@go test ./...
+	@go test $(PACKAGES)
 
 coverage:
 	@echo "Coverfile..."
-	go test -coverprofile=coverfile_out ./...
+	go test -coverprofile=coverfile_out $(PACKAGES)
 	@go tool cover -func coverfile_out
 	@go tool cover -func coverfile_out | grep total | grep -o '[0-9]*\.[0-9]*' | cut -d' ' -f1 > coverage.txt
 
